@@ -46,8 +46,6 @@ public class TeleOpCompetition extends LinearOpMode {
                 slides.toggleSlide();
             }
             if (clawGripButton.isPressed()) {
-                slides.toggleSlideRotator();
-                slides.slideUpdate();
             }
             telemetry.addData("Front Left Motor Power", drivetrain.getFrontLeftPower());
             telemetry.addData("Back Left Motor Power", drivetrain.getBackLeftPower());
