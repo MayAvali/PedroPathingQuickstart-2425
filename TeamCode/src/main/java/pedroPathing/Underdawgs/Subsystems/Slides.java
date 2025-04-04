@@ -31,6 +31,9 @@ public class Slides {
 
     public void toggleSlide() {
         sliderExtended = !sliderExtended;
+        slideUpdate();
+    }
+    public void slideUpdate() {
         if (sliderExtended) {
             slideMotor.setTargetPosition(sliderForward ? 1500 : 4200);
         } else {
@@ -40,6 +43,9 @@ public class Slides {
 
     public void toggleSlideRotator() {
         sliderForward = !sliderForward;
+        slideRotatorUpdate();
+    }
+    public void slideRotatorUpdate() {
         if (sliderForward) {
             slideRotatorMotor.setTargetPosition(750);
         } else {
