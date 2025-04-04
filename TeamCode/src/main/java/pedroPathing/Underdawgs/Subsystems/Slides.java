@@ -11,8 +11,8 @@ public class Slides {
         this.slideMotor = slideMotor;
         this.slideRotatorMotor = slideRotatorMotor;
 
-        //slideMotor.setDirection(DcMotor.Direction.REVERSE);
-        //slideRotatorMotor.setDirection(DcMotor.Direction.REVERSE);
+        slideMotor.setDirection(DcMotor.Direction.REVERSE);
+        slideRotatorMotor.setDirection(DcMotor.Direction.REVERSE);
         slideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         slideRotatorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -41,7 +41,7 @@ public class Slides {
     public void toggleSlideRotator() {
         sliderForward = !sliderForward;
         if (sliderForward) {
-            slideRotatorMotor.setTargetPosition(25);
+            slideRotatorMotor.setTargetPosition(750);
         } else {
             slideRotatorMotor.setTargetPosition(0);
         }
