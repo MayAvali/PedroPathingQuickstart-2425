@@ -4,30 +4,34 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class Slides {
     private DcMotor slideMotor;
-    private DcMotor slideRotatorMotor;
+    private DcMotor slideRotatorMotorR;
+    private DcMotor slideRotatorMotorL;
     boolean sliderExtended = false;
     boolean sliderForward = false;
-    public Slides(DcMotor slideMotor, DcMotor slideRotatorMotor) {
+    public Slides(DcMotor slideMotor, DcMotor slideRotatorMotorR, DcMotor slideRotatorMotorL) {
         this.slideMotor = slideMotor;
-        this.slideRotatorMotor = slideRotatorMotor;
+        this.slideRotatorMotorR = slideRotatorMotorR;
+        this.slideRotatorMotorL = slideRotatorMotorL;
 
         slideMotor.setDirection(DcMotor.Direction.REVERSE);
-        slideRotatorMotor.setDirection(DcMotor.Direction.REVERSE);
+        slideRotatorMotorR.setDirection(DcMotor.Direction.REVERSE);
         slideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        slideRotatorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slideRotatorMotorR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slideRotatorMotorL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 
         slideMotor.setTargetPosition(0);
-        slideRotatorMotor.setTargetPosition(0);
+        slideRotatorMotorR.setTargetPosition(0);
+        slideRotatorMotorL.setTargetPosition(0);
 
-        slideMotor.setPower(0.5);
-        slideRotatorMotor.setPower(0.5);
+        slideMotor.setPower(1);
+        slideRotatorMotorR.setPower(0.5);
+        slideRotatorMotorL.setPower(0.5);
 
         slideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        slideRotatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        slideRotatorMotorR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        slideRotatorMotorL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
-
-    public void setSlideTarget(int target) {slideMotor.setTargetPosition(target);}
-    public void setSlideRotatorTarget(int target) {slideRotatorMotor.setTargetPosition(target);}
 
     public void toggleSlide() {
         sliderExtended = !sliderExtended;
@@ -40,16 +44,17 @@ public class Slides {
             slideMotor.setTargetPosition(0);
         }
     }
-
     public void toggleSlideRotator() {
         sliderForward = !sliderForward;
         slideRotatorUpdate();
     }
     public void slideRotatorUpdate() {
         if (sliderForward) {
-            slideRotatorMotor.setTargetPosition(750);
+            slideRotatorMotorR.setTargetPosition(750);
+            slideRotatorMotorL.setTargetPosition(750);
         } else {
-            slideRotatorMotor.setTargetPosition(0);
+            slideRotatorMotorR.setTargetPosition(0);
+            slideRotatorMotorL.setTargetPosition(0);
         }
     }
 }

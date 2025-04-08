@@ -12,9 +12,9 @@ import pedroPathing.Underdawgs.Libraries.GamepadButton;
 public class TeleOpCompetition extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        GamepadButton slideExtendButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.A);
-        GamepadButton slideRotateButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.B);
-        GamepadButton clawGripButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.X);
+        GamepadButton slideExtendButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.LEFT_BUMPER);
+        GamepadButton slideRotateButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.RIGHT_BUMPER);
+        GamepadButton clawGripButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.A);
 
         Mecanum drivetrain = new Mecanum(
                 hardwareMap.dcMotor.get("leftFront"),
@@ -26,7 +26,8 @@ public class TeleOpCompetition extends LinearOpMode {
 
         Slides slides = new Slides(
                 hardwareMap.dcMotor.get("slideMotor"),
-                hardwareMap.dcMotor.get("slideRotatorMotor")
+                hardwareMap.dcMotor.get("slideRotatorMotorR"),
+                hardwareMap.dcMotor.get("slideRotatorMotorL")
         );
 
         Claw claw = new Claw(
@@ -56,6 +57,10 @@ public class TeleOpCompetition extends LinearOpMode {
             telemetry.addData("Left Stick Y " , gamepad1.left_stick_y);
             telemetry.addData("Right Stick X " , gamepad1.right_stick_x);
             telemetry.addData("Right Stick Y " , gamepad1.right_stick_y);
+
+            telemetry.addData("slideExtendButton", slideExtendButton.isPressed() ? "true" : "false");
+            telemetry.addData("slideRotateButton", slideRotateButton.isPressed() ? "true" : "false");
+            telemetry.addData("clawGripButton", clawGripButton.isPressed() ? "true" : "false");
 
             telemetry.update();
         }
