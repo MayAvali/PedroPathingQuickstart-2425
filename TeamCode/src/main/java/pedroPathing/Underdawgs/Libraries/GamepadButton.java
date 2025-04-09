@@ -2,7 +2,7 @@ package pedroPathing.Underdawgs.Libraries;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-    public class GamepadButton {
+public class GamepadButton {
     public enum GamepadKeys {
         A,
         B,
@@ -20,9 +20,9 @@ import com.qualcomm.robotcore.hardware.Gamepad;
         X,
         Y
     }
-    private Gamepad pad;
+    private final Gamepad pad;
     private boolean previousState = false;
-    private GamepadKeys key;
+    private final GamepadKeys key;
     public GamepadButton(Gamepad pad, GamepadKeys key) {
         this.pad = pad;
         this.key = key;
@@ -48,7 +48,6 @@ import com.qualcomm.robotcore.hardware.Gamepad;
             default: return false;
         }
     }
-
     public boolean isPressed() {
         boolean isPressed = (previousState != isDown()) && isDown();
         previousState = isDown();

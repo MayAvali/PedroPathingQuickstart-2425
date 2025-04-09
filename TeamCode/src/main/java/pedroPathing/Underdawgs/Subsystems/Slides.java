@@ -6,8 +6,8 @@ public class Slides {
     private DcMotor slideMotor;
     private DcMotor slideRotatorMotorR;
     private DcMotor slideRotatorMotorL;
-    boolean sliderExtended = false;
-    boolean sliderForward = false;
+    public boolean sliderExtended = false;
+    public boolean sliderForward = false;
     public Slides(DcMotor slideMotor, DcMotor slideRotatorMotorR, DcMotor slideRotatorMotorL) {
         this.slideMotor = slideMotor;
         this.slideRotatorMotorR = slideRotatorMotorR;

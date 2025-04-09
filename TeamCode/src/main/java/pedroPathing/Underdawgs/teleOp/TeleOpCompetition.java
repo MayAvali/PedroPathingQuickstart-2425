@@ -12,9 +12,13 @@ import pedroPathing.Underdawgs.Libraries.GamepadButton;
 public class TeleOpCompetition extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        GamepadButton slideExtendButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.LEFT_BUMPER);
-        GamepadButton slideRotateButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.RIGHT_BUMPER);
+
+        GamepadButton slideExtendButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.RIGHT_BUMPER);
+        GamepadButton slideRotateButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.LEFT_BUMPER);
         GamepadButton clawGripButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.A);
+
+        waitForStart();
+        if(isStopRequested()) return;
 
         Mecanum drivetrain = new Mecanum(
                 hardwareMap.dcMotor.get("leftFront"),
@@ -34,20 +38,19 @@ public class TeleOpCompetition extends LinearOpMode {
                 hardwareMap.servo.get("clawServo")
         );
 
-        waitForStart();
-        if(isStopRequested()) return;
-
         while(opModeIsActive()) {
-            drivetrain.botOrientedDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, gamepad1.right_trigger);
-
             if (slideExtendButton.isPressed()) {
-                claw.toggleClaw();
-            }
-            if (slideRotateButton.isPressed()) {
                 slides.toggleSlide();
             }
-            if (clawGripButton.isPressed()) {
+            if (slideRotateButton.isPressed()) {
+                slides.toggleSlideRotator();
             }
+            if (clawGripButton.isPressed()) {
+                claw.toggleClaw();
+            }
+
+            drivetrain.botOrientedDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, gamepad1.right_trigger);
+
             telemetry.addData("Front Left Motor Power", drivetrain.getFrontLeftPower());
             telemetry.addData("Back Left Motor Power", drivetrain.getBackLeftPower());
             telemetry.addData("Front Right Motor Power", drivetrain.getFrontRightPower());
@@ -58,9 +61,8 @@ public class TeleOpCompetition extends LinearOpMode {
             telemetry.addData("Right Stick X " , gamepad1.right_stick_x);
             telemetry.addData("Right Stick Y " , gamepad1.right_stick_y);
 
-            telemetry.addData("slideExtendButton", slideExtendButton.isPressed() ? "true" : "false");
-            telemetry.addData("slideRotateButton", slideRotateButton.isPressed() ? "true" : "false");
-            telemetry.addData("clawGripButton", clawGripButton.isPressed() ? "true" : "false");
+            telemetry.addData("Slider Extended", slides.sliderExtended);
+            telemetry.addData("Slider Forward", slides.sliderForward);
 
             telemetry.update();
         }
