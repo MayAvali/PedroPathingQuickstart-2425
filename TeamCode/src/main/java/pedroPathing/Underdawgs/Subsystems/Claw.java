@@ -15,7 +15,7 @@ public class Claw {
             clawServo.setPosition(0.1);
             clawOpen = false;
         } else {
-            clawServo.setPosition(0.3);
+            clawServo.setPosition(0.2);
             clawOpen = true;
         }
     }

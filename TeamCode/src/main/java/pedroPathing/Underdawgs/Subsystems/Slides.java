@@ -39,7 +39,7 @@ public class Slides {
     }
     public void slideUpdate() {
         if (sliderExtended) {
-            slideMotor.setTargetPosition(sliderForward ? 1500 : 4200);
+            slideMotor.setTargetPosition(sliderForward ? 500 : 4200);
         } else {
             slideMotor.setTargetPosition(0);
         }
@@ -49,10 +49,10 @@ public class Slides {
         slideRotatorUpdate();
     }
     public void slideRotatorUpdate() {
-        if (sliderForward) {
-            slideRotatorMotorR.setTargetPosition(750);
-            slideRotatorMotorL.setTargetPosition(750);
-        } else {
+        if (sliderForward & !sliderExtended) {
+            slideRotatorMotorR.setTargetPosition(850);
+            slideRotatorMotorL.setTargetPosition(850);
+        } else if (!sliderExtended) {
             slideRotatorMotorR.setTargetPosition(0);
             slideRotatorMotorL.setTargetPosition(0);
         }

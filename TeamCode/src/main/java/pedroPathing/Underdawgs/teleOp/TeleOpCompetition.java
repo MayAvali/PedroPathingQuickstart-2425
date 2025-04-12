@@ -13,8 +13,8 @@ public class TeleOpCompetition extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        GamepadButton slideExtendButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.RIGHT_BUMPER);
-        GamepadButton slideRotateButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.LEFT_BUMPER);
+        GamepadButton slideExtendButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.LEFT_BUMPER);
+        GamepadButton slideRotateButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.RIGHT_BUMPER);
         GamepadButton clawGripButton = new GamepadButton(gamepad1, GamepadButton.GamepadKeys.A);
 
         waitForStart();
