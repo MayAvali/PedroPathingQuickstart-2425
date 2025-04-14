@@ -7,7 +7,7 @@ public class Slides {
     private DcMotor slideRotatorMotorR;
     private DcMotor slideRotatorMotorL;
     public static boolean sliderExtended = false;
-    public static boolean sliderForward = false;
+    public static int sliderForward = 0;
     public Slides(DcMotor slideMotor, DcMotor slideRotatorMotorR, DcMotor slideRotatorMotorL) {
         this.slideMotor = slideMotor;
         this.slideRotatorMotorR = slideRotatorMotorR;
@@ -39,22 +39,37 @@ public class Slides {
     }
     public void slideUpdate() {
         if (sliderExtended) {
-            slideMotor.setTargetPosition(sliderForward ? 500 : 4200);
+            if (sliderForward == 0) {
+                slideMotor.setTargetPosition(4200);
+            } else {
+                slideMotor.setTargetPosition(500);
+            } 
         } else {
             slideMotor.setTargetPosition(0);
         }
     }
     public void toggleSlideRotator() {
-        sliderForward = !sliderForward;
         slideRotatorUpdate();
+        SliderForwardTick();
     }
     public void slideRotatorUpdate() {
-        if (sliderForward & !sliderExtended) {
+        if ((sliderForward == 0) & !sliderExtended) {
+            slideRotatorMotorR.setTargetPosition(800);
+            slideRotatorMotorL.setTargetPosition(800);
+        } else if (sliderForward == 1) {
             slideRotatorMotorR.setTargetPosition(860);
             slideRotatorMotorL.setTargetPosition(860);
         } else if (!sliderExtended) {
             slideRotatorMotorR.setTargetPosition(0);
             slideRotatorMotorL.setTargetPosition(0);
         }
+    }
+    private void SliderForwardTick() {
+        if (sliderForward > 1 && !sliderExtended) {
+            sliderForward = 0;
+        } else if (((sliderForward == 0) && !sliderExtended) || sliderForward == 1) {
+            sliderForward++;
+        }
+
     }
 }

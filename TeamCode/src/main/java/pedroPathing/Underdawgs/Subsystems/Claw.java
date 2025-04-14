@@ -15,7 +15,7 @@ public class Claw {
         if (clawOpen) {
             clawServo.setPosition(0.1);
             clawOpen = false;
-        } else if (Slides.sliderForward || Slides.sliderExtended) {
+        } else if ((Slides.sliderForward != 0) || Slides.sliderExtended) {
             clawServo.setPosition(0.2);
             clawOpen = true;
         }
