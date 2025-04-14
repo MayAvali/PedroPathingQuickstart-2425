@@ -6,8 +6,8 @@ public class Slides {
     private DcMotor slideMotor;
     private DcMotor slideRotatorMotorR;
     private DcMotor slideRotatorMotorL;
-    public boolean sliderExtended = false;
-    public boolean sliderForward = false;
+    public static boolean sliderExtended = false;
+    public static boolean sliderForward = false;
     public Slides(DcMotor slideMotor, DcMotor slideRotatorMotorR, DcMotor slideRotatorMotorL) {
         this.slideMotor = slideMotor;
         this.slideRotatorMotorR = slideRotatorMotorR;
@@ -50,8 +50,8 @@ public class Slides {
     }
     public void slideRotatorUpdate() {
         if (sliderForward & !sliderExtended) {
-            slideRotatorMotorR.setTargetPosition(850);
-            slideRotatorMotorL.setTargetPosition(850);
+            slideRotatorMotorR.setTargetPosition(860);
+            slideRotatorMotorL.setTargetPosition(860);
         } else if (!sliderExtended) {
             slideRotatorMotorR.setTargetPosition(0);
             slideRotatorMotorL.setTargetPosition(0);
