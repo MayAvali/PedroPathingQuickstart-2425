@@ -57,8 +57,8 @@ public class Slides {
             slideRotatorMotorR.setTargetPosition(800);
             slideRotatorMotorL.setTargetPosition(800);
         } else if (sliderForward == 1) {
-            slideRotatorMotorR.setTargetPosition(860);
-            slideRotatorMotorL.setTargetPosition(860);
+            slideRotatorMotorR.setTargetPosition(900);
+            slideRotatorMotorL.setTargetPosition(900);
         } else if (!sliderExtended) {
             slideRotatorMotorR.setTargetPosition(0);
             slideRotatorMotorL.setTargetPosition(0);
