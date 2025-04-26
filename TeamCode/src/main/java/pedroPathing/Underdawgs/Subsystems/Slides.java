@@ -54,11 +54,11 @@ public class Slides {
     }
     public void slideRotatorUpdate() {
         if ((sliderForward == 0) & !sliderExtended) {
-            slideRotatorMotorR.setTargetPosition(800);
-            slideRotatorMotorL.setTargetPosition(800);
+            slideRotatorMotorR.setTargetPosition(750);
+            slideRotatorMotorL.setTargetPosition(750);
         } else if (sliderForward == 1) {
-            slideRotatorMotorR.setTargetPosition(900);
-            slideRotatorMotorL.setTargetPosition(900);
+            slideRotatorMotorR.setTargetPosition(875);
+            slideRotatorMotorL.setTargetPosition(875);
         } else if (!sliderExtended) {
             slideRotatorMotorR.setTargetPosition(0);
             slideRotatorMotorL.setTargetPosition(0);
